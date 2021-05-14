@@ -5,6 +5,7 @@ namespace FileIO
 {
     class Program
     {
+        const string FILE_PATH = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
         static void Main(string[] args)
         {
             FileExist();
@@ -17,11 +18,8 @@ namespace FileIO
         }
         public static void FileExist()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            if (File.Exists(path))
-            {
+            if (File.Exists(FILE_PATH))
                 Console.WriteLine("File Exists");
-            }
             else
             {
                 Console.WriteLine("File Don't Exist");
@@ -29,33 +27,44 @@ namespace FileIO
         }
         public static void ReadLine()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            string[] line=File.ReadAllLines(path);
+            //validation for file path 
+            FileExist();
+            string[] line=File.ReadAllLines(FILE_PATH);
             Console.WriteLine(line[0]);
             Console.WriteLine(line[1]);
             Console.WriteLine(line[2]);
         }
         public static void ReadAllLines()
         {
-            string path= @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            string lines = File.ReadAllText(path);
+            FileExist();
+            string lines = File.ReadAllText(FILE_PATH);
             Console.WriteLine(lines);
         }
         public static void FileCopy()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            string pathCopy = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFileCopy.txt";
-            File.Copy(path,pathCopy);
+            FileExist();
+            try
+            {
+                string path = FILE_PATH;
+                if(File.Exists(FILE_PATH))
+                    Console.WriteLine("Source file exists");
+                string pathCopy = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFileCopy.txt";
+                File.Copy(path, pathCopy);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public static void DeleteFile()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFileCopy.txt";
-            File.Delete(path);
+            FileExist();
+            File.Delete(FILE_PATH);
         }
         public static void ReadFromStreamReader()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            using (StreamReader sr = File.OpenText(path))
+            FileExist();
+            using (StreamReader sr = File.OpenText(FILE_PATH))
             {
                 string s = " ";
                 while ((s = sr.ReadLine()) != null)
@@ -67,12 +76,12 @@ namespace FileIO
         }
         public static void WriteusingStreamWriter()
         {
-            string path = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
-            using (StreamWriter sr = File.AppendText(path))
+            FileExist();
+            using (StreamWriter sr = File.AppendText(FILE_PATH))
             {
                 sr.WriteLine("Hello World");
                 sr.Close();
-                Console.WriteLine(File.ReadAllText(path));
+                Console.WriteLine(File.ReadAllText(FILE_PATH));
             }
             Console.ReadKey();
         }
