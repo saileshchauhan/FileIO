@@ -6,7 +6,10 @@ namespace Serialization
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BinarySerialization binary = new BinarySerialization();
+            binary.Serialization();
+            BinaryDeSerialization binaryDeSerialization = new BinaryDeSerialization();
+            binaryDeSerialization.DeSerialization();
         }
     }
 }
