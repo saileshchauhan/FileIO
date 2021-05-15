@@ -8,13 +8,13 @@ namespace FileIO
         const string FILE_PATH = @"C:\Users\chauh\source\repos\FileIO\FileIO\TextFile.txt";
         static void Main(string[] args)
         {
-            FileExist();
-            ReadLine();
-            ReadAllLines();
+            //FileExist();
+            //ReadLine();
+            //ReadAllLines();
             FileCopy();
-            DeleteFile();
-            ReadFromStreamReader();
-            WriteusingStreamWriter();
+            //DeleteFile();
+            //ReadFromStreamReader();
+            //WriteusingStreamWriter();
         }
         public static void FileExist()
         {
